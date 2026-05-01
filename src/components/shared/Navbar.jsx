@@ -56,6 +56,7 @@ const Navbar = () => {
                                     <FaUser size={20} />
                                 </div>
                             )}
+                            <Link href={'/myprofile'}><button className='btn btn-warning'>My Profile</button></Link>
                             <button onClick={handleLogout} className='btn btn-error'>Logout</button>
                         </div>
                     ) : (

@@ -1,8 +1,9 @@
 import Image from 'next/image';
 import React from 'react';
 import 'animate.css';
+import Link from 'next/link';
 
-const AllAnimalCard = ({animal}) => {
+const AllAnimalCard = ({ animal }) => {
     return (
         <div className="card bg-slate-200 shadow-md animate__animated animate__backInRight transition-transform duration-300 hover:scale-105 hover:shadow-lg">
             <figure>
@@ -13,7 +14,7 @@ const AllAnimalCard = ({animal}) => {
                 <p>{animal.description}</p>
                 <div className='flex gap-5 items-center'>
                     <p className='font-bold'>{animal.price} tk</p>
-                    <button className='btn btn-warning'>See All Details</button>
+                    <Link href={`/detailspage/${animal.id}`}><button className='btn btn-warning'>See All Details</button></Link>
                     <button className='btn btn-success'>Book Advance</button>
                 </div>
             </div>
