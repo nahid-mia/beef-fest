@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 import 'animate.css';
 
-const AnimalCard = ({ animal }) => {
+const AllAnimalCard = ({animal}) => {
     return (
         <div className="card bg-slate-200 shadow-md animate__animated animate__backInRight transition-transform duration-300 hover:scale-105 hover:shadow-lg">
             <figure>
@@ -11,10 +11,14 @@ const AnimalCard = ({ animal }) => {
             <div className="card-body">
                 <h2 className="card-title">{animal.name}</h2>
                 <p>{animal.description}</p>
-
+                <div className='flex gap-5 items-center'>
+                    <p className='font-bold'>{animal.price} tk</p>
+                    <button className='btn btn-warning'>See All Details</button>
+                    <button className='btn btn-success'>Book Advance</button>
+                </div>
             </div>
         </div>
     );
 };
 
-export default AnimalCard;
+export default AllAnimalCard;
