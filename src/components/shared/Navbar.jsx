@@ -3,6 +3,7 @@ import { PiTrademarkRegisteredFill } from 'react-icons/pi';
 import { RiLoginCircleFill } from 'react-icons/ri';
 import Image from 'next/image';
 import NavLink from './NavLink';
+import Link from 'next/link';
 
 const Navbar = () => {
     return (
@@ -20,8 +21,8 @@ const Navbar = () => {
                 </div>
                 <div className='flex gap-4'>
 
-                    <button className='btn btn-outline btn-accent font-bold text-gray-500'><RiLoginCircleFill /> Login</button>
-                    <button className='btn btn-outline btn-warning font-bold text-gray-500'><PiTrademarkRegisteredFill /> Register</button>
+                    <Link href={'/login'}><button className='btn btn-outline btn-accent font-bold text-gray-500'><RiLoginCircleFill />Login</button></Link>
+                    <Link href={'/register'}><button className='btn btn-outline btn-warning font-bold text-gray-500'><PiTrademarkRegisteredFill />Register</button></Link>
 
 
                 </div>
