@@ -35,10 +35,11 @@ const RegisterPage = () => {
         <div className='flex flex-col w-xs mx-auto items-center justify-center my-20'>
             <form onSubmit={handleSubmit(handleRegister)}>
                 <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
-                    <legend className="fieldset-legend">Login</legend>
+                    <legend className="fieldset-legend">Sign Up</legend>
 
                     <label className='label'>Name</label>
-                    <input type="text" {...register("name")} className='input' placeholder='Type your Name' />
+                    <input type="text" {...register("name", { required: "Name is Required" })} className='input' placeholder='Type your Name' />
+                    {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
 
                     <label className="label">Email</label>
                     <input {...register("email", { required: "Email is Required" })} type="email" className="input" placeholder="Type your Email" />

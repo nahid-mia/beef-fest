@@ -23,6 +23,7 @@ const Navbar = () => {
             },
         });
     }
+    const [error, setError] = useState(false);
 
     return (
         <div className='bg-white shadow-md'>

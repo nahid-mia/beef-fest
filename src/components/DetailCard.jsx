@@ -36,7 +36,6 @@ const DetailCard = ({ animal }) => {
                     <p><span className='font-bold'>Location:</span> {animal.location}</p>
                     <div className='flex gap-2'>
                         <button className='btn btn-success'>Book Now</button>
-                        <Link href={'/animals'}><button className='btn btn-warning'>Go Back</button></Link>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { authClient } from '@/lib/auth-client';
 import Image from 'next/image';
@@ -10,6 +10,7 @@ const MyProfile = () => {
     const router = useRouter();
     const { data: session } = authClient.useSession();
     const user = session?.user;
+    const [error, setError] = useState(false);
     return (
         <div className="card w-150 lg:card-side bg-base-100 shadow-sm mx-auto my-20">
 
@@ -21,7 +22,6 @@ const MyProfile = () => {
                         height={200}
                         alt="User"
                         onError={() => setError(true)}
-                        className="rounded-full"
                     />
                 ) : (
                     <div className="w-12 h-12 flex items-center justify-center bg-gray-200 rounded-full">
@@ -38,6 +38,7 @@ const MyProfile = () => {
                 <div className='flex items-center'>
                     <div className='flex gap-2'>
                         <Link href={'/animals'}><button className='btn btn-warning'>Go Back</button></Link>
+                        <Link href={'/profileupdate'}><button className='btn btn-success'>Update</button></Link>
                     </div>
                 </div>
             </div>

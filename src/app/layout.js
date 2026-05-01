@@ -18,6 +18,9 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Beef Fest",
+  icons: {
+    icon: "https://i.ibb.co.com/XQDQKHW/istockphoto-1267561350-612x612.jpg",
+  },
   description: "Best Qurbani Helper, Best Cows in Town, Best Cows for Delivery",
 };
 
