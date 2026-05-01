@@ -1,11 +1,29 @@
-import React from 'react';
+"use client";
+import React, { useState } from 'react';
 import { PiTrademarkRegisteredFill } from 'react-icons/pi';
 import { RiLoginCircleFill } from 'react-icons/ri';
 import Image from 'next/image';
 import NavLink from './NavLink';
 import Link from 'next/link';
+import { authClient } from '@/lib/auth-client';
+import { FaUser } from 'react-icons/fa';
+import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
+
+    const router = useRouter();
+    const { data: session } = authClient.useSession();
+    const user = session?.user;
+    const handleLogout = async () => {
+        await authClient.signOut({
+            fetchOptions: {
+                onSuccess: () => {
+                    router.push("/login"); // redirect to login page
+                },
+            },
+        });
+    }
+
     return (
         <div className='bg-white shadow-md'>
             <div className='w-10/12 mx-auto p-2 mt-3  flex flex-col sm:flex-row justify-between items-center gap-5'>
@@ -21,8 +39,40 @@ const Navbar = () => {
                 </div>
                 <div className='flex gap-4'>
 
-                    <Link href={'/login'}><button className='btn btn-outline btn-accent font-bold text-gray-500'><RiLoginCircleFill />Login</button></Link>
-                    <Link href={'/register'}><button className='btn btn-outline btn-warning font-bold text-gray-500'><PiTrademarkRegisteredFill />Register</button></Link>
+                    {user ? (
+                        <div className="flex gap-4 items-center">
+                            <h2 className='font-semibold'>Hello, {user?.name}</h2>
+                            {user?.image && user.image.startsWith("http") && !error ? (
+                                <Image
+                                    src={user.image}
+                                    width={50}
+                                    height={50}
+                                    alt="User"
+                                    onError={() => setError(true)}
+                                    className="rounded-full"
+                                />
+                            ) : (
+                                <div className="w-12 h-12 flex items-center justify-center bg-gray-200 rounded-full">
+                                    <FaUser size={20} />
+                                </div>
+                            )}
+                            <button onClick={handleLogout} className='btn btn-error'>Logout</button>
+                        </div>
+                    ) : (
+                        <div className='flex gap-4'>
+                            <Link href="/login">
+                                <button className="btn btn-outline btn-accent font-bold text-gray-500">
+                                    <RiLoginCircleFill />Login
+                                </button>
+                            </Link>
+                            <Link href="/register">
+                                <button className="btn btn-outline btn-warning font-bold text-gray-500">
+                                    <PiTrademarkRegisteredFill />Register
+                                </button>
+                            </Link>
+                        </div>
+                    )}
+
 
 
                 </div>
