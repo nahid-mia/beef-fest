@@ -18,12 +18,6 @@ const LoginPage = () => {
             rememberMe: true,
             callbackURL: "/",
         });
-
-        if (res) {
-            toast.success("Welcome Back");
-        } else {
-            toast.error("Invalid Username or Password");
-        }
     }
 
     const signIn = async () => {
