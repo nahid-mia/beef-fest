@@ -5,24 +5,11 @@ import { RiLoginCircleFill } from 'react-icons/ri';
 import Image from 'next/image';
 import NavLink from './NavLink';
 import Link from 'next/link';
-import { authClient } from '@/lib/auth-client';
 import { FaUser } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
-
-    const router = useRouter();
-    const { data: session } = authClient.useSession();
-    const user = session?.user;
-    const handleLogout = async () => {
-        await authClient.signOut({
-            fetchOptions: {
-                onSuccess: () => {
-                    router.push("/login"); // redirect to login page
-                },
-            },
-        });
-    }
+    const [user, setUser] = useState(false)
     const [error, setError] = useState(false);
 
     return (

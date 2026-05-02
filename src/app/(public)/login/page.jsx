@@ -3,28 +3,15 @@ import Link from 'next/link';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { GrGoogle } from 'react-icons/gr';
-import { authClient } from '@/lib/auth-client';
-import { toast } from 'react-toastify';
 
 const LoginPage = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const handleLogin = async (data) => {
-        const { email, password } = data;
-        const { data: res, error } = await authClient.signIn.email({
-            email: email, // required
-            password: password, // required
-            rememberMe: true,
-            callbackURL: "/",
-        });
+        console.log(data)
     }
 
-    const signIn = async () => {
-        const data = await authClient.signIn.social({
-            provider: "google",
-        });
-    };
     return (
         <div className='flex flex-col w-xs mx-auto items-center justify-center my-20'>
             <form onSubmit={handleSubmit(handleLogin)}>
@@ -44,7 +31,7 @@ const LoginPage = () => {
                 </fieldset>
             </form>
             <div className="divider">OR</div>
-            <button onClick={signIn} className='btn btn-neutral w-11/12'><GrGoogle></GrGoogle> Login With Google</button>
+            <button className='btn btn-neutral w-11/12'><GrGoogle></GrGoogle> Login With Google</button>
             <p className='text-center'>Don't have a Account? <span className='text-pink-500'><Link href={'/register'}>Register</Link></span></p>
         </div>
     );
