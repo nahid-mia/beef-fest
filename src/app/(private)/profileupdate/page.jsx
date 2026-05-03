@@ -9,13 +9,7 @@ const ProfileUpdate = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const handleUpdate = async (data) => {
-
-        const update = async () => await authClient.updateUser({
-            image: data.image,
-            name: data.name,
-        })
-        update();
-        redirect('/');
+        console.log(data)
     }
 
     return (

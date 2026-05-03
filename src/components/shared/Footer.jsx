@@ -14,7 +14,6 @@ const Footer = () => {
                             "url('https://i.ibb.co/XQDQKHW/istockphoto-1267561350-612x612.jpg')",
                     }}
                 ></div>
-
                 <div className="relative z-10 top-20">
                     <div className='flex flex-col justify-center items-center'>
                         <h2 className='text-3xl font-bold text-white'>If You Win, Then We Win</h2>

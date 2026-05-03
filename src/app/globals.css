@@ -1,4 +1,10 @@
 @import "tailwindcss";
+
 @plugin "daisyui" {
   themes: all;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }

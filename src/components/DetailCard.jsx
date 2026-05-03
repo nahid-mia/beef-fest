@@ -4,24 +4,30 @@ import React from 'react';
 
 const DetailCard = ({ animal }) => {
 
-    return (
-        <div className="card lg:card-side bg-base-100 shadow-sm">
+    const handleSubmit = () => {
+        console.log("button has been clicked")
+    }
 
-            <figure className="lg:w-1/2 relative h-64 lg:h-auto">
+    return (
+        <div className="card lg:card-side bg-white shadow-sm">
+
+            <figure className="lg:w-1/2 relative py-10 lg:h-auto">
                 <Image
                     src={animal.image}
-                    alt="Image of the animal"
-                    fill
-                    className="object-cover"
+                    width={100}
+                    height={100}
+                    alt={animal.name}
+                    className='mt-5 object-cover'
+                    style={{ height: 'auto', width: '300px' }}
                 />
             </figure>
 
-            <div className="card-body lg:w-1/2">
+            <div className="card-body lg:w-1/2 pt-12 pb-7">
                 <h2 className="text-2xl font-semibold">
                     {animal.name}
                 </h2>
                 <p className='text-gray-600'>{animal.description}</p>
-                <div className='flex max-w-20 gap-3'>
+                <div className='flex max-w-50 gap-3'>
                     <p className='font-bold'>Tags:</p>
                     <p className='bg-linear-to-r from-red-500 to-blue-500 bg-clip-text text-transparent'>{animal.type}</p>
                     <p className='bg-linear-to-r from-red-500 to-blue-500 bg-clip-text text-transparent'>{animal.breed}</p>
@@ -35,7 +41,7 @@ const DetailCard = ({ animal }) => {
                 <div className='flex items-center'>
                     <p><span className='font-bold'>Location:</span> {animal.location}</p>
                     <div className='flex gap-2'>
-                        <button className='btn btn-success'>Book Now</button>
+                        <button onClick={() => handleSubmit()} className='btn btn-success'>Book Now</button>
                     </div>
                 </div>
             </div>
