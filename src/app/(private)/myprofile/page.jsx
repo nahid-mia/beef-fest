@@ -12,7 +12,7 @@ const MyProfile = () => {
     const user = session?.user;
     const [error, setError] = useState(false);
     return (
-        <div className="card flex flex-col sm:flex-row items-center w-fit sm:card-side bg-base-100 shadow-sm mx-auto my-20">
+        <div className="card flex flex-col sm:flex-row items-center w-fit sm:w-125 sm:card-side bg-base-100 shadow-sm mx-auto my-20">
 
             <figure className="sm:w-1/2 relative h-64 sm:h-auto">
                 {user?.image && user.image.startsWith("http") && !error ? (
