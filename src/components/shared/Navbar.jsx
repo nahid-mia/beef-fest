@@ -1,17 +1,28 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PiTrademarkRegisteredFill } from 'react-icons/pi';
 import { RiLoginCircleFill } from 'react-icons/ri';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaUser } from 'react-icons/fa';
+import { authClient } from '@/lib/auth-client';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
-    const [user, setUser] = useState(null)
-    const [error, setError] = useState(false);
+    const { data: session } = authClient.useSession();
+    const user = session?.user;
+    const router = useRouter();
 
-    const handleLogout = () => {
-        setUser(null);
+    const handleLogout = async () => {
+        await authClient.signOut({
+            fetchOptions: {
+                onSuccess: () => {
+                    router.push("/login");
+                },
+            },
+        });
+        toast.success("User is now logged out");
     }
 
     return (
@@ -24,7 +35,7 @@ const Navbar = () => {
                         height={80}
                         alt='Cow Farm Image'
                         className='rounded-full'
-                        style={{ width: '60px', height: '60px', objectFit: 'cover' }}
+                        style={{ width: '60px', height: 'auto', objectFit: 'cover' }}
                     />
                 </div>
                 <div>
@@ -38,14 +49,15 @@ const Navbar = () => {
                     {user ? (
                         <div className="flex gap-4 items-center">
                             <h2 className='font-semibold'>Hello, {user?.name}</h2>
-                            {user?.image && user.image.startsWith("http") && !error ? (
+                            {user?.image && user.image.startsWith("http") ? (
                                 <Image
                                     src={user.image}
                                     width={50}
                                     height={50}
                                     alt="User"
                                     onError={() => setError(true)}
-                                    className="rounded-full"
+                                    className="rounded-full object-fill"
+                                    style={{ width: '50px', height: '50px' }}
                                 />
                             ) : (
                                 <div className="w-12 h-12 flex items-center justify-center bg-gray-200 rounded-full">

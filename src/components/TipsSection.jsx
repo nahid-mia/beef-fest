@@ -12,7 +12,7 @@ const TipsSection = () => {
             ></div>
             <div className="absolute inset-0 bg-black/40"></div>
 
-            <div className="relative z-10 text-white flex flex-col gap-5 px-4 py-5 sm:px-10 md:px-30 max-w-4xl mx-auto">
+            <div className="relative z-10 text-white flex flex-col gap-5 px-4 py-20 sm:px-10 md:px-30 max-w-4xl mx-auto">
                 <h2 className='text-xl'>Remember.....</h2>
                 <ul className='list-disc list-inside space-y-3'>
                     <li>“A healthy animal ensures both proper Qurbani and better meat quality.”</li>

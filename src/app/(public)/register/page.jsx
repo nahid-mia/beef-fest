@@ -1,16 +1,41 @@
 "use client";
+import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 
 const RegisterPage = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-
+    const router = useRouter();
     const handleRegister = async (data) => {
-       console.log(data)
+        const { name, email, image, password } = data;
+
+        console.log(data);
+        const { data: res, error } = await authClient.signUp.email({
+            name: name,
+            email: email,
+            password: password,
+            image: image,
+            callbackURL: "/",
+        });
+        if (res) {
+            toast.success(`${name} is now registered`);
+            router.push("/");
+        }
+        if (error) {
+            toast.warning(`${name} is already registered from before`);
+            console.log(error)
+        }
     }
+    const signIn = async () => {
+        const data = await authClient.signIn.social({
+            provider: "google",
+        });
+    };
 
     return (
         <div className='flex flex-col w-xs mx-auto items-center justify-center my-20'>
@@ -38,7 +63,7 @@ const RegisterPage = () => {
             </form>
             <div className="divider">OR</div>
             <Link href={'/login'} className='w-11/12'><button className='btn w-full bg-gray-500 text-white'>Login By Email</button></Link>
-            <button className='btn w-11/12 bg-gray-500 text-white'>Login By Google</button>
+            <button onClick={() => signIn()} className='btn w-11/12 bg-gray-500 text-white'>Login By Google</button>
 
         </div>
     );

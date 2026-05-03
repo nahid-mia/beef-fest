@@ -1,16 +1,39 @@
 'use client';
+import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { GrGoogle } from 'react-icons/gr';
+import { toast } from 'react-toastify';
 
 const LoginPage = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const router = useRouter();
 
     const handleLogin = async (data) => {
-        console.log(data)
+        console.log(data);
+        const { email, password } = data;
+        const { data: res, error } = await authClient.signIn.email({
+            email: email,
+            password: password,
+            rememberMe: true,
+            callbackURL: "/",
+        });
+        if (res) {
+            toast.success('User Logged in Successfully');
+            router.push("/");
+        }
+        if (error) {
+            toast.warning('Invalid email or password')
+        }
     }
+    const signIn = async () => {
+        const data = await authClient.signIn.social({
+            provider: "google",
+        });
+    };
 
     return (
         <div className='flex flex-col w-xs mx-auto items-center justify-center my-20'>
@@ -31,7 +54,7 @@ const LoginPage = () => {
                 </fieldset>
             </form>
             <div className="divider">OR</div>
-            <button className='btn btn-neutral w-11/12'><GrGoogle></GrGoogle> Login With Google</button>
+            <button onClick={()=>signIn()} className='btn btn-neutral w-11/12'><GrGoogle></GrGoogle> Login With Google</button>
             <p className='text-center'>Don't have a Account? <span className='text-pink-500'><Link href={'/register'}>Register</Link></span></p>
         </div>
     );
