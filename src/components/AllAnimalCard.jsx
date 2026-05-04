@@ -24,7 +24,7 @@ const AllAnimalCard = ({ animal }) => {
                 <div className='flex gap-5 items-center'>
                     <p className='font-bold'>{animal.price} tk</p>
                     <Link href={`/detailspage/${animal.id}`}><button className='btn btn-warning'>See All Details</button></Link>
-                    <button className='btn btn-success'>Book Advance</button>
+                    <Link href={`/booking/${animal.id}`}><button className='btn btn-success'>Book Advance</button></Link>
                 </div>
             </div>
         </div>

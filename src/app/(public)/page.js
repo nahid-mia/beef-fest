@@ -1,4 +1,5 @@
 'use client';
+import AboutSection from "@/components/AboutSection";
 import AnimalCard from "@/components/AnimalCard";
 import TipsSection from "@/components/TipsSection";
 import { featuredAnimals } from "@/lib/data";
@@ -30,8 +31,9 @@ export default function Home() {
         ))}
       </div>
       <div className="flex items-center justify-center mb-10">
-        <Link href={'/animals'}><button className="btn btn-success">Browse ALL <FaArrowRight></FaArrowRight></button></Link> 
+        <Link href={'/animals'}><button className="btn btn-success">Browse ALL <FaArrowRight></FaArrowRight></button></Link>
       </div>
+      <AboutSection></AboutSection>
     </>
   );
 }

@@ -4,10 +4,6 @@ import React from 'react';
 
 const DetailCard = ({ animal }) => {
 
-    const handleSubmit = () => {
-        console.log("button has been clicked")
-    }
-
     return (
         <div className="card lg:card-side bg-white shadow-sm">
 
@@ -41,7 +37,7 @@ const DetailCard = ({ animal }) => {
                 <div className='flex items-center'>
                     <p><span className='font-bold'>Location:</span> {animal.location}</p>
                     <div className='flex gap-2'>
-                        <button onClick={() => handleSubmit()} className='btn btn-success'>Book Now</button>
+                        <Link href={`/booking/${animal.id}`}><button className='btn btn-success'>Book Now</button></Link>
                     </div>
                 </div>
             </div>

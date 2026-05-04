@@ -14,8 +14,8 @@ const ProfileUpdate = () => {
     const handleUpdate = async (data) => {
         const { name, image } = data;
         await authClient.updateUser({
-            name,
-            image,
+            name: name,
+            image: image,
         });
         await refetch();
         router.push("/myprofile");
